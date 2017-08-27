@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>UsenetDownloader</title>
+    <title>Muse</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,6 +9,28 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="sidebar_menu">
+      <button>
+        M
+      </button>
+      <button>
+        Books
+      </button>
+      <button>
+        TV
+      </button>
+      <button>
+        Movies
+      </button>
+      <button>
+        Music
+      </button>
+      <button>
+        Settings
+      </button>
+    </div>
+    <div class="main">
+      <%= yield %>
+    </div>
   </body>
 </html>

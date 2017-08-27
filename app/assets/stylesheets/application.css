@@ -13,3 +13,41 @@
  *= require_tree .
  *= require_self
  */
+
+/* Document styles */
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+
+/* Menu and menu element styles */
+.sidebar_menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 5%;
+    height: 100%;
+    background: green;
+}
+
+.sidebar_menu > button {
+    width: 5vw;
+    height: 5vw;
+    background: red;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+
+/* Main content styles */
+.main {
+    margin-left: 5%;
+    background: purple;
+    min-height: inherit;
+}
