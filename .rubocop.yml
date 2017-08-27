@@ -1,0 +1,35 @@
+Rails:
+  Enabled: true
+
+Rails/ApplicationRecord:
+  Enabled: false
+
+Rails/HashAndBelongsToMany:
+  Enabled: false
+
+Layout/IndentHash:
+  IndentationWidth: 4
+
+Layout/TrailingWhitespace:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+  EnforcedStyle: empty_lines
+
+Metrics/LineLength:
+  Max: 150
+
+Metrics/ClassLength:
+  Max: 200
+
+Metrics/AbcSize:
+  Max: 30
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/TernaryParentheses:
+  Enabled: false
+
+Style/RedundantReturn:
+  Enabled: false
