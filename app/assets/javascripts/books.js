@@ -8,19 +8,51 @@ $( function() {
 
         button.on('click', function() {
             $.ajax({
-                url: '/indexers/search?' + $.param({query: field.val()}),
+                url: '/books/search?' + $.param({q: field.val()}),
                 success: function(data) {
-                    var content = '';
-                    $.each(data.channel.item, function() {
-                        content += '<p>' + this.description + '</p>';
+
+                    target.html('');
+
+                    console.log(data);
+
+                    $.each(data.items, function() {
+
+                        var data = this.volumeInfo;
+                        var title = data.title;
+                        var description = data.description;
+                        var image = (data.imageLinks)
+                            ? data.imageLinks.thumbnail
+                            : '/assets/temp_image.png';
+
+                        // TODO: find a better way of generating this
+                        target.append(
+                            '<div style="display: table">' +
+                                '<div style="display: table-cell">' +
+                                    '<img src="' + image + '">' +
+                                '</div>' +
+                                '<div style="display: table-cell; vertical-align: top">' +
+                                    '<p>' + title + '</p>' +
+                                    '<p>' + description + '</p>' +
+                                '</div>' +
+                            '</div>'
+                        );
+
                     });
-                    target.html(content);
+
+
                 },
                 error: function() {
                     alert('Failure');
                 }
             })
         });
+
+        $(this).find('.search_books_button').magnificPopup({
+            items: {
+                src: '#search_books_popup',
+                type: 'inline'
+            }
+        })
 
     })
 

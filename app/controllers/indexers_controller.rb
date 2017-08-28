@@ -7,7 +7,7 @@ class IndexersController < ApplicationController
 
   # Perform a search of defined indexers and respond with formatted JSON
   def search
-    render json: Indexer.first.search(params[:query])
+    render json: Indexer.first.search(params[:q])
   end
 
 end

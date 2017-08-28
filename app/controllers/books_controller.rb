@@ -6,4 +6,9 @@ class BooksController < ApplicationController
 
   end
 
+  # Use the Google books API to search for books
+  def search
+    render json: Book.search(params[:q])
+  end
+
 end
