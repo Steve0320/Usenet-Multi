@@ -2,7 +2,24 @@
     position: relative;
     background: #FFF;
     padding: 20px;
-    width: auto;
-    max-width: 500px;
-    margin: 20px auto;
+    margin: 0 auto;
+    width: 75vw;
+    height: 75vh;
+}
+
+.book_search_result {
+    display: table;
+}
+
+.book_search_result > div {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.book_search_result .cover {
+    width: 10%;
+}
+
+.book_search_result .title {
+    margin: 0;
 }

@@ -17,13 +17,14 @@
   </button>
 
   <div id="search_books_popup" class="popup_search mfp-hide">
-    <span>
+    <div style="height: 10%;">
       <input title="Title" placeholder="Book title" class="search_books_query">
       <button class="search_books">Search</button>
-    </span>
+    </div>
 
-    <div class="indexer_response">
-
+    <div class="indexer_response" style="overflow-y: auto; height: 90%;">
+      <div class="results_container"></div>
+      <div class="waypoint_bottom"></div>
     </div>
   </div>
 
