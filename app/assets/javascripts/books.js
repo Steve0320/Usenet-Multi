@@ -20,6 +20,14 @@ $( function() {
             }
         });
 
+        results_container.on('mouseenter', 'img', function() {
+
+        });
+
+        results_container.on('mouseleave', 'img', function() {
+
+        });
+
         button.on('click', function() {
             results_container.html('');
             results_container.data('query', field.val());
@@ -38,6 +46,7 @@ $( function() {
 
 });
 
+// Send AJAX request to server and update container
 function search_books(container, waypoint) {
 
     var offset = container.data('offset');
@@ -56,13 +65,14 @@ function search_books(container, waypoint) {
             $.each(data.items, function() {
 
                 var data = this.volumeInfo;
+
                 var title = data.title;
                 var description = data.description;
                 var image = (data.imageLinks)
                     ? data.imageLinks.thumbnail
                     : '/assets/temp_image.png';
 
-                // TODO: find a better way of generating this
+                // Generate result item and add to panel
                 container.append(
                     '<div class="book_search_result">' +
                         '<div class="cover">' +
@@ -74,6 +84,7 @@ function search_books(container, waypoint) {
                         '</div>' +
                     '</div>'
                 );
+
 
             });
 
