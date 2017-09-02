@@ -1,6 +1,11 @@
 class BooksController < ApplicationController
 
-  respond_to :html
+  include SearchHelper
+
+  respond_to :html, only: :index
+
+  # TODO: Make XML and HTML responses
+  respond_to :json, only: :search
 
   def index
 
@@ -8,7 +13,8 @@ class BooksController < ApplicationController
 
   # Use the Google books API to search for books
   def search
-    render json: Book.search(params[:q], params[:offset])
+    @results = search_itunes(params)
+    respond_with(@results)
   end
 
 end
