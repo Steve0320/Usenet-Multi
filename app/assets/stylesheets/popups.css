@@ -7,6 +7,13 @@
     height: 75vh;
 }
 
+.add_button {
+    display: none;
+    position: relative;
+    top: -50%;
+    margin: auto;
+}
+
 .book_search_result {
     display: table;
 }
@@ -17,7 +24,16 @@
 }
 
 .book_search_result .cover {
-    width: 10%;
+    width: 200px;
+    height: 300px;
+    display: block;
+    margin-bottom: 30px;
+    margin-right: 20px;
+}
+
+.book_search_result .cover > img {
+    width:200px;
+    height: 300px;
 }
 
 .book_search_result .title {

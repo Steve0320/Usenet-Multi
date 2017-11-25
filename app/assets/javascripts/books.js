@@ -8,6 +8,7 @@ $( function() {
         var target = $(this).find('.indexer_response');
         var results_container = $(this).find('.results_container');
 
+        // Waypoint for auto-loading more results
         var waypoint = new Waypoint({
             element: $(this).find('.waypoint_bottom'),
             context: target,
@@ -21,15 +22,15 @@ $( function() {
             }
         });
 
-        // TODO: For adding books to database
-        results_container.on('mouseenter', 'img', function() {
-
+        // Search popup handler
+        $(this).find('.search_books_button').magnificPopup({
+            items: {
+                src: '#search_books_popup',
+                type: 'inline'
+            }
         });
 
-        results_container.on('mouseleave', 'img', function() {
-
-        });
-
+        // Search button handler
         button.on('click', function() {
             results_container.html('');
             results_container.data('query', field.val());
@@ -37,12 +38,17 @@ $( function() {
             search_books(results_container, waypoint);
         });
 
-        $(this).find('.search_books_button').magnificPopup({
-            items: {
-                src: '#search_books_popup',
-                type: 'inline'
-            }
-        })
+        // Display button for adding entry to database
+        results_container.on('mouseenter', '.cover', function() {
+            $(this).find('img').fadeTo(0, 0.5, null);
+            $(this).find('button').css('display', 'block');
+        });
+
+        // Hide button for adding entry to database
+        results_container.on('mouseleave', '.cover', function() {
+            $(this).find('img').fadeTo(0, 1, null);
+            $(this).find('button').hide();
+        });
 
     })
 
@@ -53,8 +59,6 @@ function search_books(container, waypoint) {
 
     var offset = container.data('offset');
 
-    console.log("Performing search for string " + container.data('query'));
-
     $.ajax({
 
         // TODO: make limit/block size configurable
@@ -63,17 +67,20 @@ function search_books(container, waypoint) {
         success: function(data) {
 
             // TODO: Handle possible errors returned (rate limit exceeded, etc.)
-            console.log(data);
 
             waypoint.disable();
 
+            // Retrieve search metadata
+            var metadata = data.metadata;
+
+            // Generate each result item and add to panel
             $.each(data.results, function() {
 
-                // Generate result item and add to panel
                 container.append(
                     '<div class="book_search_result">' +
                         '<div class="cover">' +
                             '<img src="' + this.cover_url + '">' +
+                            '<button class="add_button">TEST</button>' +
                         '</div>' +
                         '<div>' +
                             '<p class="title">' + this.title + '</p>' +
@@ -82,13 +89,13 @@ function search_books(container, waypoint) {
                     '</div>'
                 );
 
-
             });
 
+            // Increment offset for next block
             container.data('offset', offset + 20);
 
             // Assume no more results if request returns less than expected
-            if (data.numResults < 20) {
+            if (metadata.num_results < 20) {
                 container.append('<p>No more search results</p>');
             }
             else {
@@ -102,6 +109,6 @@ function search_books(container, waypoint) {
             alert('Failure');
         }
 
-    })
+    });
 
 }

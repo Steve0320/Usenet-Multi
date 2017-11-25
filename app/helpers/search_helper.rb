@@ -1,11 +1,12 @@
 # This module provides functions to interact with third-party APIs.
-# Any new API interfaces should be added here.
+# Any new API interfaces should be added here with the name 'search_(type)_(API)'
 module SearchHelper
 
   require 'net/http'
   require 'net/https'
 
-  def search_itunes(term)
+  # Sear
+  def search_book_itunes(term)
 
     # Limit valid parameters
     query = term.permit(:q, :limit, :offset)
@@ -19,7 +20,7 @@ module SearchHelper
   end
 
   # Query against TMDB movie API
-  def search_tmdb(term)
+  def search_movie_tmdb(term)
 
   end
 

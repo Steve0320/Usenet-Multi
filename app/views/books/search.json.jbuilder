@@ -1,7 +1,11 @@
-json.numResults @results['resultCount']
+# Search metadata
+json.metadata do
+  json.num_results @results['resultCount']
+end
 
-json.results do |resultElement|
-  resultElement.array! @results['results'] do |result|
+# Search results
+json.results do |result_element|
+  result_element.array! @results['results'] do |result|
     json.title result['trackCensoredName']
     json.author result['artistName']
     json.description result['description']

@@ -17,7 +17,7 @@ class BooksController < ApplicationController
   # Search defined APIs for query string
   # Permits query (q), limit, and offset
   def search
-    @results = search_itunes(params)
+    @results = search_book_itunes(params)
     respond_with(@results)
   end
 
