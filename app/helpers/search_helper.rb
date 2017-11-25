@@ -1,3 +1,5 @@
+# This module provides functions to interact with third-party APIs.
+# Any new API interfaces should be added here.
 module SearchHelper
 
   require 'net/http'
@@ -13,6 +15,11 @@ module SearchHelper
     query[:media] = 'ebook'
 
     return JSON.parse(get("https://itunes.apple.com/search?#{query.to_query}"))
+
+  end
+
+  # Query against TMDB movie API
+  def search_tmdb(term)
 
   end
 

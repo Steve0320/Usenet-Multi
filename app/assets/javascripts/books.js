@@ -1,3 +1,4 @@
+// TODO: Most of this code could be reused for other media if refactored
 $( function() {
 
     $('.book_index').each(function() {
@@ -20,6 +21,7 @@ $( function() {
             }
         });
 
+        // TODO: For adding books to database
         results_container.on('mouseenter', 'img', function() {
 
         });
@@ -51,36 +53,31 @@ function search_books(container, waypoint) {
 
     var offset = container.data('offset');
 
+    console.log("Performing search for string " + container.data('query'));
+
     $.ajax({
 
-        // TODO: remove intitle when multiple search parameters implemented
-        url: '/books/search?' + $.param({q: 'intitle:'+container.data('query'), offset: offset}),
+        // TODO: make limit/block size configurable
+        url: '/books/search?' + $.param({q: container.data('query'), offset: offset, limit: 20}),
 
         success: function(data) {
 
             // TODO: Handle possible errors returned (rate limit exceeded, etc.)
+            console.log(data);
 
             waypoint.disable();
 
-            $.each(data.items, function() {
-
-                var data = this.volumeInfo;
-
-                var title = data.title;
-                var description = data.description;
-                var image = (data.imageLinks)
-                    ? data.imageLinks.thumbnail
-                    : '/assets/temp_image.png';
+            $.each(data.results, function() {
 
                 // Generate result item and add to panel
                 container.append(
                     '<div class="book_search_result">' +
                         '<div class="cover">' +
-                            '<img src="' + image + '">' +
+                            '<img src="' + this.cover_url + '">' +
                         '</div>' +
                         '<div>' +
-                            '<p class="title">' + title + '</p>' +
-                            '<p class="description">' + description + '</p>' +
+                            '<p class="title">' + this.title + '</p>' +
+                            '<p class="description">' + this.description + '</p>' +
                         '</div>' +
                     '</div>'
                 );
@@ -88,19 +85,19 @@ function search_books(container, waypoint) {
 
             });
 
-            // TODO: make offset increment configurable
-            offset += 20;
+            container.data('offset', offset + 20);
 
-            // Reenable auto-paging if more items, show end if not
-            if (offset < data.totalItems) {
-                waypoint.enable();
+            // Assume no more results if request returns less than expected
+            if (data.numResults < 20) {
+                container.append('<p>No more search results</p>');
             }
             else {
-                container.append('<p>No more search results</p>')
+                waypoint.enable();
             }
 
         },
 
+        // TODO: Handle errors more gracefully
         error: function() {
             alert('Failure');
         }

@@ -1,3 +1,5 @@
+# This controller handles indexing and searching e-books
+
 class BooksController < ApplicationController
 
   include SearchHelper
@@ -7,11 +9,13 @@ class BooksController < ApplicationController
   # TODO: Make XML and HTML responses
   respond_to :json, only: :search
 
+  # TODO: Load stored books from local DB
   def index
 
   end
 
-  # Use the Google books API to search for books
+  # Search defined APIs for query string
+  # Permits query (q), limit, and offset
   def search
     @results = search_itunes(params)
     respond_with(@results)

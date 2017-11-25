@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
-  get 'books/search', to: 'books#search', as: 'search_books', defaults: {format: :json}
+  # Routes for books and related searches
+  get 'books/search', to: 'books#search', as: 'search_books', defaults: { format: :json }
   resources :books
 
   get 'indexers/search', to: 'indexers#search', as: 'search_indexers'
