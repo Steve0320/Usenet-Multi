@@ -50,6 +50,12 @@ $( function() {
             $(this).find('button').hide();
         });
 
+        // Book select button handler
+        results_container.on('click', '.add_button', function() {
+            console.log('Button clicked');
+            console.log($(this).closest('.book_search_result').data('info'));
+        });
+
     })
 
 });
@@ -68,6 +74,7 @@ function search_books(container, waypoint) {
 
             // TODO: Handle possible errors returned (rate limit exceeded, etc.)
 
+            // Disable waypoint to prevent duplicate events
             waypoint.disable();
 
             // Retrieve search metadata
@@ -76,11 +83,11 @@ function search_books(container, waypoint) {
             // Generate each result item and add to panel
             $.each(data.results, function() {
 
-                container.append(
+                var result_div = $(
                     '<div class="book_search_result">' +
                         '<div class="cover">' +
                             '<img src="' + this.cover_url + '">' +
-                            '<button class="add_button">TEST</button>' +
+                            '<button class="add_button">Add Book</button>' +
                         '</div>' +
                         '<div>' +
                             '<p class="title">' + this.title + '</p>' +
@@ -88,6 +95,9 @@ function search_books(container, waypoint) {
                         '</div>' +
                     '</div>'
                 );
+
+                result_div.data('info', this);
+                container.append(result_div);
 
             });
 
