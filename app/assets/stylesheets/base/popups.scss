@@ -1,3 +1,5 @@
+//TODO: Refactor this / change class names
+
 .popup_search {
     position: relative;
     background: #FFF;
@@ -15,27 +17,30 @@
 }
 
 .book_search_result {
-    display: table;
-}
 
-.book_search_result > div {
+  display: table;
+
+  >div {
     display: table-cell;
     vertical-align: top;
-}
+  }
 
-.book_search_result .cover {
+  .title {
+    margin: 0;
+  }
+
+  .cover {
     width: 200px;
     height: 300px;
     display: block;
     margin-bottom: 30px;
     margin-right: 20px;
-}
 
-.book_search_result .cover > img {
-    width:200px;
-    height: 300px;
-}
+    >img {
+      width: 200px;
+      height: 300px;
+    }
 
-.book_search_result .title {
-    margin: 0;
+  }
+
 }

@@ -1,0 +1,22 @@
+// Sidebar menu styles
+
+.sidebar_menu {
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 5%;
+  height: 100%;
+  background: green;
+
+  button {
+    width: 5vw;
+    height: 5vw;
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+    background: red;
+  }
+
+}

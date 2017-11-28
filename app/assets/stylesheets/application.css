@@ -10,46 +10,6 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require main
  */
-
-/* Document styles */
-html {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-}
-
-
-/* Menu and menu element styles */
-.sidebar_menu {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 5%;
-    height: 100%;
-    background: green;
-}
-
-.sidebar_menu > button {
-    width: 5vw;
-    height: 5vw;
-    background: red;
-    margin: 0;
-    padding: 0;
-    border: none;
-    overflow: hidden;
-}
-
-
-/* Main content styles */
-.main {
-    margin-left: 5%;
-    background: purple;
-    min-height: inherit;
-    padding: 20px;
-}

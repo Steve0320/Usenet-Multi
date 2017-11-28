@@ -1,0 +1,11 @@
+// General styles shared by all content panes
+
+@import "books";
+@import "indexers";
+
+.content {
+  margin-left: 5%;
+  min-height: inherit;
+  padding: 20px;
+  background: purple;
+}

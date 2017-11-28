@@ -1,0 +1,9 @@
+// Main SASS file, should only be used to @import other files
+
+@import "vendor/magnific_popup.css";
+
+@import "base/globals.scss";
+@import "base/sidebar.scss";
+@import "base/popups.scss";
+
+@import "pages/content";
