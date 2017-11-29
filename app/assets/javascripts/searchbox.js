@@ -36,19 +36,19 @@
         });
 
         // Show add button
-        obj.res.on('mouseenter', '.cover', function() {
+        obj.res.on('mouseenter', '.popup-result-cover', function() {
             $(this).find('img').fadeTo(0, 0.5, null);
             $(this).find('button').css('display', 'block');
         });
 
         // Hide add button
-        obj.res.on('mouseleave', '.cover', function() {
+        obj.res.on('mouseleave', '.popup-result-cover', function() {
             $(this).find('img').fadeTo(0, 1, null);
             $(this).find('button').hide();
         });
 
         // TODO: Implement database store functions
-        obj.res.on('click', '.add_button', function() {
+        obj.res.on('click', '.popup-result-add', function() {
             console.log('Button clicked');
             console.log($(obj).closest('.book_search_result').data('info'));
         });
@@ -82,14 +82,14 @@
                 $.each(data.results, function() {
 
                     var result_div = $(
-                        '<div class="book_search_result">' +
-                            '<div class="cover">' +
+                        '<div class="popup-result">' +
+                            '<div class="popup-result-cover">' +
                                 '<img src="' + this.cover_url + '">' +
-                                '<button class="add_button">Add Book</button>' +
+                                '<button class="popup-result-add">Add Book</button>' +
                             '</div>' +
                             '<div>' +
-                                '<p class="title">' + this.title + '</p>' +
-                                '<p class="description">' + this.description + '</p>' +
+                                '<p class="popup-result-title">' + this.title + '</p>' +
+                                '<p class="popup-result-description">' + this.description + '</p>' +
                             '</div>' +
                         '</div>'
                     );

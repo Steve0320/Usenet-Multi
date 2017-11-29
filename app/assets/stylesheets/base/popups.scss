@@ -1,6 +1,4 @@
-//TODO: Refactor this / change class names
-
-.popup_search {
+.popup-search {
     position: relative;
     background: #FFF;
     padding: 20px;
@@ -9,14 +7,16 @@
     height: 75vh;
 }
 
-.add_button {
-    display: none;
-    position: relative;
-    top: -50%;
-    margin: auto;
+.popup-search-query {
+  height: 10%;
 }
 
-.book_search_result {
+.popup-search-response {
+  overflow-y: auto;
+  height: 90%;
+}
+
+.popup-result {
 
   display: table;
 
@@ -25,22 +25,29 @@
     vertical-align: top;
   }
 
-  .title {
-    margin: 0;
+}
+
+.popup-result-title {
+  margin: 0;
+}
+
+.popup-result-cover {
+  width: 200px;
+  height: 300px;
+  display: block;
+  margin-bottom: 30px;
+  margin-right: 20px;
+
+  >button {
+    display: none;
+    position: relative;
+    top: -50%;
+    margin: auto;
   }
 
-  .cover {
+  >img {
     width: 200px;
     height: 300px;
-    display: block;
-    margin-bottom: 30px;
-    margin-right: 20px;
-
-    >img {
-      width: 200px;
-      height: 300px;
-    }
-
   }
 
 }

@@ -1,19 +1,9 @@
 <div class="book_index">
 
-  <button class="search_books_button" style="width: 120px; height: 180px;">
+  <button class="search-books-button">
     Add new book
   </button>
 
-  <%# Book search popup %>
-  <div class="popup_search mfp-hide" id="search_books_popup">
-
-    <div style="height: 10%;">
-      <input class="search_books_query" title="Title" placeholder="Book title">
-      <button class="search_books">Search</button>
-    </div>
-
-    <div class="indexer_response" style="overflow-y: auto; height: 90%;"></div>
-
-  </div>
+  <%= render partial: 'layouts/popup_search', locals: { id: 'popup-books' } %>
 
 </div>

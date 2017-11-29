@@ -3,16 +3,16 @@ $( function() {
 
     $('.book_index').each(function() {
 
-        var button = $(this).find('.search_books');
-        var field = $(this).find('.search_books_query');
-        var target = $(this).find('.indexer_response');
+        var button = $(this).find('.popup-search-button');
+        var field = $(this).find('.popup-search-text');
+        var target = $(this).find('.popup-search-response');
 
         var searchbox = new Searchbox(target, 'books/search?', 20);
 
         // Search popup handler
-        $(this).find('.search_books_button').magnificPopup({
+        $(this).find('.search-books-button').magnificPopup({
             items: {
-                src: '#search_books_popup',
+                src: '#popup-books',
                 type: 'inline'
             }
         });
