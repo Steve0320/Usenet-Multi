@@ -38,7 +38,7 @@
         // Show add button
         obj.res.on('mouseenter', '.popup-result-cover', function() {
             $(this).find('img').fadeTo(0, 0.5, null);
-            $(this).find('button').css('display', 'block');
+            $(this).find('button').show();
         });
 
         // Hide add button
@@ -47,10 +47,10 @@
             $(this).find('button').hide();
         });
 
-        // TODO: Implement database store functions
-        obj.res.on('click', '.popup-result-add', function() {
+        // TODO: Implement database store functions via AJAX
+        obj.res.on('click', '.popup-result-button', function() {
             console.log('Button clicked');
-            console.log($(obj).closest('.book_search_result').data('info'));
+            console.log($(this).closest('.popup-result').data('info'));
         });
 
     }
@@ -85,11 +85,13 @@
                         '<div class="popup-result">' +
                             '<div class="popup-result-cover">' +
                                 '<img src="' + this.cover_url + '">' +
-                                '<button class="popup-result-add">Add Book</button>' +
+                                '<div class="popup-result-button">' +
+                                    '<button>Select</button>' +
+                                '</div>' +
                             '</div>' +
-                            '<div>' +
-                                '<p class="popup-result-title">' + this.title + '</p>' +
-                                '<p class="popup-result-description">' + this.description + '</p>' +
+                            '<div class="popup-result-description">' +
+                                '<p>' + this.title + '</p>' +
+                                '<p>' + this.description + '</p>' +
                             '</div>' +
                         '</div>'
                     );
@@ -117,7 +119,6 @@
             error: function() {
                 alert('Failure');
             }
-
 
         });
 

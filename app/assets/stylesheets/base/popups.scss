@@ -17,37 +17,40 @@
 }
 
 .popup-result {
-
-  display: table;
+  width: 100%;
+  height: 15vw;
 
   >div {
-    display: table-cell;
-    vertical-align: top;
+    float: left;
+    height: 100%;
   }
 
-}
-
-.popup-result-title {
-  margin: 0;
 }
 
 .popup-result-cover {
-  width: 200px;
-  height: 300px;
-  display: block;
-  margin-bottom: 30px;
-  margin-right: 20px;
+
+  width: 10vw;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+
+}
+
+.popup-result-description {
+  width: calc(100% - 10vw);
+  overflow: auto;
+}
+
+.popup-result-button {
+
+  text-align: center;
+  position: relative;
+  top: -50%;
 
   >button {
     display: none;
-    position: relative;
-    top: -50%;
-    margin: auto;
-  }
-
-  >img {
-    width: 200px;
-    height: 300px;
   }
 
 }
