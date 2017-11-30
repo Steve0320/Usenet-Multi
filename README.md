@@ -8,7 +8,7 @@ interface and functionality is fleshed out. It is currently very early in develo
 ## Project Status
 [![Build Status](https://travis-ci.org/Steve0320/Usenet-Multi.svg?branch=master)](https://travis-ci.org/Steve0320/Usenet-Multi)
 
-[![Code Climate](https://codeclimate.com/github/Steve0320/Usenet-Multi/badges/gpa.svg)](https://codeclimate.com/github/Steve0320/Usenet-Multi)
+[![Maintainability](https://api.codeclimate.com/v1/badges/60e8fa0b760195406835/maintainability)](https://codeclimate.com/github/Steve0320/Usenet-Multi/maintainability)
 [![Test Coverage](https://codeclimate.com/github/Steve0320/Usenet-Multi/badges/coverage.svg)](https://codeclimate.com/github/Steve0320/Usenet-Multi)
 [![Issue Count](https://codeclimate.com/github/Steve0320/Usenet-Multi/badges/issue_count.svg)](https://codeclimate.com/github/Steve0320/Usenet-Multi)
 
