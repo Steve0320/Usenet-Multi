@@ -1,43 +1,14 @@
----
-engines:
-  brakeman:
+version: "2"
+plugins:
+  rubocop:
     enabled: true
-  bundler-audit:
+  eslint:
     enabled: true
   csslint:
     enabled: true
-  duplication:
-    enabled: true
-    config:
-      languages:
-      - ruby
-      - javascript
-      - python
-      - php
-  eslint:
-    enabled: true
-  fixme:
-    enabled: true
-  rubocop:
-    enabled: true
-ratings:
-  paths:
-  - Gemfile.lock
-  - "**.erb"
-  - "**.haml"
-  - "**.rb"
-  - "**.rhtml"
-  - "**.slim"
-  - "**.css"
-  - "**.inc"
-  - "**.js"
-  - "**.jsx"
-  - "**.module"
-  - "**.php"
-  - "**.py"
-exclude_paths:
-- config/
-- db/
-- vendor/
-- app/assets/javascripts/vendor
-- app/assets/stylesheets/vendor
+exclude_patterns:
+  - "config/"
+  - "db/"
+  - "vendor/"
+  - "app/assets/javascripts/vendor"
+  - "app/assets/stylesheets/vendor"
