@@ -1,7 +1,7 @@
 // Register functions for books page
 $( function() {
 
-    $('.book_index').each(function() {
+    $('.book-index').each(function() {
 
         var button = $(this).find('.popup-search-button');
         var field = $(this).find('.popup-search-text');

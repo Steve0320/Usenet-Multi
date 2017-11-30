@@ -49,8 +49,10 @@
 
         // TODO: Implement database store functions via AJAX
         obj.res.on('click', '.popup-result-button', function() {
-            console.log('Button clicked');
-            console.log($(this).closest('.popup-result').data('info'));
+
+            var result = { book: $(this).closest('.popup-result').data('info') };
+            $.post('books.json', result);
+
         });
 
     }

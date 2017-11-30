@@ -1,6 +1,14 @@
-<div class="book_index">
+<div class="book-index">
 
-  <button class="search-books-button"> Add new book </button>
+  <div>
+    <button class="search-books-button"> Add new book </button>
+    <% @books.each do |book| %>
+        <div>
+          <img class="book-image" src="<%=book.cover_url%>">
+        </div>
+    <% end %>
+  </div>
+
 
   <%= render partial: 'layouts/popup_search', locals: { id: 'popup-books' } %>
 

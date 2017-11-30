@@ -39,8 +39,14 @@
 }
 
 .popup-result-description {
-  width: calc(100% - 10vw);
+
+  width: 200px;
+  width: -webkit-calc(100% - 10vw);
+  width:    -moz-calc(100% - 10vw);
+  width:         calc(100% - 10vw);
+
   overflow: auto;
+
 }
 
 .popup-result-button {

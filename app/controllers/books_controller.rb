@@ -11,14 +11,22 @@ class BooksController < ApplicationController
 
   # TODO: Load stored books from local DB
   def index
+    @books = Book.all
+  end
 
+  def create
+    Book.create!(book_params)
   end
 
   # Search defined APIs for query string
   # Permits query (q), limit, and offset
   def search
-    @results = search_book_itunes(params)
-    respond_with(@results)
+    respond_with search_books(params)
+  end
+
+  # TODO: Add rating and tags
+  def book_params
+    params.require(:book).permit(:title, :author, :description, :cover_url, :publish_date)
   end
 
 end
