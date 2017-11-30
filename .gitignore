@@ -23,4 +23,7 @@
 /node_modules
 /yarn-error.log
 
+# Yarn only used for eslint
+/yarn.lock
+
 .byebug_history

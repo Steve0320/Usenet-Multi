@@ -128,4 +128,4 @@
 
     window.Searchbox = Searchbox;
 
-})();
+}());
