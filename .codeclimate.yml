@@ -4,6 +4,8 @@ plugins:
     enabled: true
   eslint:
     enabled: true
+    config:
+      config: .eslintrc.yml
   csslint:
     enabled: true
 exclude_patterns:
