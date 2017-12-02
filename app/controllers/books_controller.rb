@@ -8,7 +8,7 @@ class BooksController < ApplicationController
 
   respond_to :html, only: %i[index show search]
   respond_to :json, only: %i[show search]
-  respond_to :xml, only: %i[search]
+  respond_to :xml, only: %i[show search]
 
   def index
     @books = Book.all

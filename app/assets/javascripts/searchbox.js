@@ -47,7 +47,7 @@
     $(this).find('button').hide();
   });
 
-  // TODO: Implement error checking for POST request
+  // TODO: Implement error checking for POST request / give some indication already added
   obj.res.on('click', '.popup-result-button', function() {
     var result = { book: $(this).closest('.popup-result').data('info') };
     console.log(result);
@@ -72,7 +72,7 @@
 
       // TODO: Allow configurable parameters
       url: context.url + $.param({q: context.query, offset: context.offset, limit: context.limit}),
-      
+
       success: function(data) {
 
         context.flag.disable();
