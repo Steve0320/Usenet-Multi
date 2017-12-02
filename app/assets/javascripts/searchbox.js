@@ -5,127 +5,98 @@
 
 (function() {
 
-    function Searchbox(container, url, limit) {
+  function Searchbox(container, url, limit) {
 
-        var obj = this;
+    var obj = this;
 
-        // Create required elements in container
-        obj.res = $('<div class="searchbox-results"></div>');
-        var mark = $('<div class="searchbox-bottom"></div>');
-        container.append(obj.res);
-        container.append(mark);
+    // Create required elements in container
+    obj.res = $('<div class="searchbox-results"></div>');
+    var mark = $('<div class="searchbox-bottom"></div>');
+    container.append(obj.res);
+    container.append(mark);
 
-        // Set initial values
-        obj.query = '';
-        obj.offset = 0;
-        obj.url = url;
-        obj.limit = limit;
+    // Set initial values
+    obj.query = '';
+    obj.offset = 0;
+    obj.url = url;
+    obj.limit = limit;
 
-        // Register waypoint to trigger autoload
-        obj.flag = new Waypoint({
-            element: mark,
-            context: container,
-            enabled: false,
-            offset: '100%',
-            handler: function(direction) {
-                if (direction === 'down') {
-                    console.log('Loading more results...');
-                    obj.search();
-                }
-            }
-        });
-
-        // Show add button
-        obj.res.on('mouseenter', '.popup-result-cover', function() {
-            $(this).find('img').fadeTo(0, 0.5, null);
-            $(this).find('button').show();
-        });
-
-        // Hide add button
-        obj.res.on('mouseleave', '.popup-result-cover', function() {
-            $(this).find('img').fadeTo(0, 1, null);
-            $(this).find('button').hide();
-        });
-
-        // TODO: Implement database store functions via AJAX
-        obj.res.on('click', '.popup-result-button', function() {
-
-            var result = { book: $(this).closest('.popup-result').data('info') };
-            $.post('books.json', result);
-
-        });
-
+    // Register waypoint to trigger autoload
+    obj.flag = new Waypoint({
+    element: mark,
+    context: container,
+    enabled: false,
+    offset: '100%',
+    handler: function(direction) {
+      if (direction === 'down') {
+      console.log('Loading more results...');
+      obj.search();
+      }
     }
+  });
 
-    // Start a new search with the given query
-    Searchbox.prototype.start = function(query) {
-        this.res.html('');
-        this.query = query;
-        this.offset = 0;
-        this.search();
-    };
+  // Show add button
+  obj.res.on('mouseenter', '.popup-result-cover', function() {
+    $(this).find('img').fadeTo(0, 0.5, null);
+    $(this).find('button').show();
+  });
 
-    Searchbox.prototype.search = function() {
+  // Hide add button
+  obj.res.on('mouseleave', '.popup-result-cover', function() {
+    $(this).find('img').fadeTo(0, 1, null);
+    $(this).find('button').hide();
+  });
 
-        var context = this;
+  // TODO: Implement error checking for POST request
+  obj.res.on('click', '.popup-result-button', function() {
+    var result = { book: $(this).closest('.popup-result').data('info') };
+    console.log(result);
+    $.post('/books', result);
+  });
 
-        $.ajax({
+  }
 
-            // TODO: Allow configurable parameters
-            url: context.url + $.param({q: context.query, offset: context.offset, limit: context.limit}),
+  // Start a new search with the given query
+  Searchbox.prototype.start = function(query) {
+    this.res.html('');
+    this.query = query;
+    this.offset = 0;
+    this.search();
+  };
 
-            success: function(data) {
+  Searchbox.prototype.search = function() {
 
-                context.flag.disable();
-                var metadata = data.metadata;
+    var context = this;
 
-                // Generate each result item and add to panel
-                //TODO: Make result_div more flexible for different media types
-                $.each(data.results, function() {
+    $.ajax({
 
-                    var result_div = $(
-                        '<div class="popup-result">' +
-                            '<div class="popup-result-cover">' +
-                                '<img src="' + this.cover_url + '">' +
-                                '<div class="popup-result-button">' +
-                                    '<button>Select</button>' +
-                                '</div>' +
-                            '</div>' +
-                            '<div class="popup-result-description">' +
-                                '<p>' + this.title + '</p>' +
-                                '<p>' + this.description + '</p>' +
-                            '</div>' +
-                        '</div>'
-                    );
+      // TODO: Allow configurable parameters
+      url: context.url + $.param({q: context.query, offset: context.offset, limit: context.limit}),
+      
+      success: function(data) {
 
-                    result_div.data('info', this);
-                    context.res.append(result_div);
+        context.flag.disable();
+        context.res.append($(data));
 
-                });
+        // Increment offset for next block
+        context.offset += context.limit;
 
-                // Increment offset for next block
-                context.offset += context.limit;
+        // Only continue if EOF flag not present
+        if (!$(data).hasClass('flag-end-results')) {
+          context.flag.enable();
+        }
 
-                // Assume no more results if smaller number of results returned
-                // than requested; re-enable autoload otherwise
-                if (metadata.num_results < context.limit) {
-                    context.res.append('<p>No more search results</p>');
-                }
-                else {
-                    context.flag.enable();
-                }
+      },
 
-            },
+      // TODO: Handle errors more gracefully
+      error: function() {
+        alert('Failure');
+      }
 
-            // TODO: Handle errors more gracefully
-            error: function() {
-                alert('Failure');
-            }
+    });
 
-        });
+  };
 
-    };
-
-    window.Searchbox = Searchbox;
+  window.Searchbox = Searchbox;
 
 }());

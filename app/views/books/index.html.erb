@@ -1,14 +1,20 @@
 <div class="book-index">
 
-  <div>
-    <button class="search-books-button"> Add new book </button>
-    <% @books.each do |book| %>
-        <div>
-          <img class="book-image" src="<%=book.cover_url%>">
-        </div>
-    <% end %>
-  </div>
+  <%# TODO: Dynamically determine row size %>
+  <% @books.each_slice(4) do |row| %>
+      <div class="book-row">
+        <% row.each do |book| %>
+            <span class="book-link">
+              <img class="book-image" src="<%=book.cover_url%>" data-id="<%=book.id%>">
+            </span>
+        <% end %>
+      </div>
+  <% end %>
 
+  <%# TODO: Find way to put button inline with rows %>
+  <div>
+    <span><button class="search-books-button"> Add new book </button></span>
+  </div>
 
   <%= render partial: 'layouts/popup_search', locals: { id: 'popup-books' } %>
 

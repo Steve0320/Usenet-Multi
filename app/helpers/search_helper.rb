@@ -51,8 +51,7 @@ module SearchHelper
     # Parse response JSON
     res = JSON.parse(get("#{base_url}?#{term.to_query}"))
 
-    # TODO: This may still be easier with jbuilder partials
-    items = res['items'].map do |i|
+    items = res['items']&.map do |i|
 
       {
           title: i.dig('volumeInfo', 'title'),

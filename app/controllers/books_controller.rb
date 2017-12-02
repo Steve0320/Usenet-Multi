@@ -4,12 +4,12 @@ class BooksController < ApplicationController
 
   include SearchHelper
 
-  respond_to :html, only: :index
+  layout false, only: %i[show search]
 
-  # TODO: Make XML and HTML responses
-  respond_to :json, only: :search
+  respond_to :html, only: %i[index show search]
+  respond_to :json, only: %i[show search]
+  respond_to :xml, only: %i[search]
 
-  # TODO: Load stored books from local DB
   def index
     @books = Book.all
   end
@@ -18,10 +18,16 @@ class BooksController < ApplicationController
     Book.create!(book_params)
   end
 
+  def show
+    @book = Book.find(params[:id])
+    respond_with @book
+  end
+
   # Search defined APIs for query string
   # Permits query (q), limit, and offset
   def search
-    respond_with search_books(params)
+    @results = search_books(params)
+    respond_with @results
   end
 
   # TODO: Add rating and tags

@@ -1,0 +1,31 @@
+<% if @results[:results].blank? %>
+
+    <%# Return flag for end of results %>
+    <div class="flag-end-results">
+      <p>No more results</p>
+    </div>
+
+<% else %>
+
+    <% @results[:results].each do |result| %>
+
+        <%# Encode all info into outer div %>
+        <div class="popup-result" data-info="<%=result.to_json%>">
+
+          <div class="popup-result-cover">
+            <img src="<%=result[:cover_url]%>">
+            <div class="popup-result-button">
+              <button>Select</button>
+            </div>
+          </div>
+
+          <div class="popup-result-description">
+            <p><%=result[:title]%></p>
+            <p><%=raw(result[:description])%></p>
+          </div>
+
+        </div>
+
+    <% end %>
+
+<% end %>
